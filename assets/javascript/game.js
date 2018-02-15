@@ -19,10 +19,41 @@ function randomize (arr) {
 function updateHangmanLetters(letter) {
 //    for loop runs through letters in the word
     for (var i = 0; i < answerWord.length; i++) {
-    // if any letter is a match the "if" takes control
+        // if any letter is a match the "if" takes control
         if (letter === answerWord [i] ) {
             var answerWordLetter = answerWord[i]
             hangmanWord[i] = answerWordLetter;
         }             
     }
 }
+
+function updateGuesses (letter) {
+ wrongGuesses.push(letter)   
+ guessesLeft--;
+}
+
+function hideWord(arr) {
+return Array(arr.length).fill('_')    
+    // look up fill in mdn
+}
+
+function validateInput(key) {
+    if(ltrs.indexOf(key)=== -1) return false;
+
+    if (wrongGuesses.indexOf(key) >=0) return false;
+
+    if (hangmanWord.indexOf(key) >=0) return false;
+    return true;
+}
+
+function takeTurn(letter) {
+    if (answerWord.indexOf(letter)>=0) {
+        updateHangmanLetters(letter)  
+                
+    } else {
+        updateGuesses(letter)
+    }
+    print(ids);
+    
+}
+
