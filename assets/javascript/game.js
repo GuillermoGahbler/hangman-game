@@ -2,12 +2,12 @@ var words = ["dog","cat","monkey","narwhal"]
 
 var ids = ['hangmanWord','guessesLeft','wrongGuesses','winCount', 'lossCount']
 
-var hangmanWord = 0;
+var hangmanWord = [];
 var guessesLeft = 0;
-var wrongGuesses = 0;
+var wrongGuesses =[] ;
 var winCount= 0;
 var lossCount =0;
-var answerWord =0;
+var answerWord =[]; // these need to be made arrays because they are words
 
 
 var ltrs = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -51,9 +51,66 @@ function takeTurn(letter) {
         updateHangmanLetters(letter)  
                 
     } else {
-        updateGuesses(letter)
+        updateGuesses(letter);
     }
     print(ids);
     
 }
 
+
+function updateScore(){
+    if (hangmanWord.indexOf('_') ===-1){
+        updateWin();
+    } else if(guessesLeft===0){ 
+        updateLoss();
+        
+    }
+
+
+}
+
+function updateWin (){
+    winCount++;
+    document.getElementById("msg").textContent= "You win!";
+    startGame();
+
+}
+
+function updateLoss (){
+    lossCount++;
+    document.getElementById("msg").textContent= "You didn't win!";
+    startGame();
+
+}
+
+function print(arr) {
+arr.forEach(function (idName){
+
+    if(Array.isArray(window[idName])){
+        document.getElementById(idName).textContent = window[idName].join('')
+    }
+    else {
+         document.getElementById(idName).textContent = window[idName];
+    }
+});
+
+}
+
+function startGame() {
+
+answerWord=randomize(words);
+hangmanWord=hideWord(answerWord);
+guessesLeft=9;
+wrongGuesses=[];
+
+print(ids)
+}
+
+document.addEventListener("keyup", function(event){
+    if(validateInput(event.key)){
+        takeTurn(event.key)
+        updateScore()
+    }
+})
+
+startGame();
