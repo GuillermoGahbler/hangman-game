@@ -1,4 +1,4 @@
-var words = ["dog","cat","monkey","narwhal"]
+var words = ["dog","cat","monkey","narwhal","xoloitzcuintli"]
 
 var ids = ['hangmanWord','guessesLeft','wrongGuesses','winCount', 'lossCount']
 
@@ -71,14 +71,14 @@ function updateScore(){
 
 function updateWin (){
     winCount++;
-    document.getElementById("msg").textContent= "You win!";
+    document.getElementById("msg").textContent= "You win! Here's the correct word "+ answerWord;
     startGame();
 
 }
 
 function updateLoss (){
     lossCount++;
-    document.getElementById("msg").textContent= "You didn't win!";
+    document.getElementById("msg").textContent= "You didn't win! Here's the correct word "+ answerWord;
     startGame();
 
 }
