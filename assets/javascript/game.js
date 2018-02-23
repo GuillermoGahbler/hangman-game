@@ -59,7 +59,7 @@ function takeTurn(letter) {
 
 
 function updateScore(){
-    if (hangmanWord.indexOf('_') ===-1){
+    if (hangmanWord.indexOf(' _ ') ===-1){
         updateWin();
     } else if(guessesLeft===0){ 
         updateLoss();
