@@ -33,7 +33,7 @@ function updateGuesses (letter) {
 }
 
 function hideWord(arr) {
-return Array(arr.length).fill('_')    
+return Array(arr.length).fill(' _ ')    
     // look up fill in mdn
 }
 
